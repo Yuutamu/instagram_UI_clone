@@ -3,6 +3,25 @@ import 'package:instagram_ui_clone/main.dart';
 
 class ProfileScreen extends StatelessWidget {
   ProfileScreen({Key? key}) : super(key: key);
+  
+  final List<Map<String, String>> stories = [
+  {
+    'StoryImageUrl': 'https://pics.prcm.jp/yasasanowake/71057852/jpeg/71057852_220x220.jpeg',
+    'label': 'Healthy',
+  },
+  {
+    'StoryImageUrl': 'https://pics.prcm.jp/yasasanowake/71057852/jpeg/71057852_220x220.jpeg',
+    'label': 'Meat',
+  },
+  {
+    'StoryImageUrl': 'https://pics.prcm.jp/yasasanowake/71057852/jpeg/71057852_220x220.jpeg',
+    'label': 'Fish',
+  },
+  {
+    'StoryImageUrl': 'https://pics.prcm.jp/yasasanowake/71057852/jpeg/71057852_220x220.jpeg',
+    'label': 'Vegetables',
+  },
+];
 
   // MEMO: MyFeedScreen の Post画像URL
   final images = [
@@ -161,87 +180,18 @@ class ProfileScreen extends StatelessWidget {
                   // Texts -end-
 
                   // Stories -start-
+                  // MEMO：List.generate(処理を行う数, 処理)でMap のようなことを行っている。
                   Row(
-                    children: [
-                      Column(
-                        children: [
-                          ClipOval(
-                            child: Image.network(
-                              'https://pics.prcm.jp/yasasanowake/71057852/jpeg/71057852_220x220.jpeg',
-                              width: 60,
-                              height: 60,
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                          const Text(
-                            'Healthy',
-                            style: TextStyle(
-                              fontSize: 14,
-                            ),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(width: 16),
+                    children: List.generate(stories.length, (index) {
+                      return Padding(
+                        padding: EdgeInsets.only(right: 16.0),
+                        child: InstagramStoryItem(
+                          StoryImageUrl: stories[index]['StoryImageUrl']!,
+                          label: stories[index]['label']!,
+                        ),
+                      );
+                    }),
 
-                      Column(
-                        children: [
-                          ClipOval(
-                            child: Image.network(
-                              'https://pics.prcm.jp/yasasanowake/71057852/jpeg/71057852_220x220.jpeg',
-                              width: 60,
-                              height: 60,
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                          const Text(
-                            'Meat',
-                            style: TextStyle(
-                              fontSize: 14,
-                            ),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(width: 16),
-
-                      Column(
-                        children: [
-                          ClipOval(
-                            child: Image.network(
-                              'https://pics.prcm.jp/yasasanowake/71057852/jpeg/71057852_220x220.jpeg',
-                              width: 60,
-                              height: 60,
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                          const Text(
-                            'Fish',
-                            style: TextStyle(
-                              fontSize: 14,
-                            ),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(width: 16),
-
-                      Column(
-                        children: [
-                          ClipOval(
-                            child: Image.network(
-                              'https://pics.prcm.jp/yasasanowake/71057852/jpeg/71057852_220x220.jpeg',
-                              width: 60,
-                              height: 60,
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                          const Text(
-                            'Vegetables',
-                            style: TextStyle(
-                              fontSize: 14,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
                   ),
                   const SizedBox(height: 24),
                   // Stories -end-

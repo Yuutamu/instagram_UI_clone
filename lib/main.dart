@@ -30,7 +30,42 @@ class MyHomePage extends StatefulWidget {
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
-// MEMO: Feed投稿部分の冗長さを回避するために widget として切り出す
+// MEMO: Profile_Stories部分 冗長さ回避ために widget として切り出す
+class InstagramStoryItem extends StatelessWidget {
+  final String StoryImageUrl;
+  final String label;
+
+  const InstagramStoryItem({
+    Key? key,
+    required this.StoryImageUrl,
+    required this.label,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        ClipOval(
+          child: Image.network(
+            StoryImageUrl,
+            width: 60,
+            height: 60,
+            fit: BoxFit.cover,
+          ),
+        ),
+        const SizedBox(height: 8),
+        Text(
+          label,
+          style: const TextStyle(
+            fontSize: 14,
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+// MEMO: Profile_Feed投稿部分 冗長さ回避ために widget として切り出す
 class InstagramPostItem extends StatelessWidget {
   const InstagramPostItem({Key? key, required this.imageUrl}) : super(key:  key);
 
